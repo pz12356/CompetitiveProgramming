@@ -9,9 +9,10 @@ int main() {
 
   int n, A;
   std::cin >> n >> A;
-  
+
   std::vector<int> a(n);
-  for (int i = 0; i < n; i++) std::cin >> a[i];
+  for (int i = 0; i < n; i++)
+    std::cin >> a[i];
 
   int cur = 0;
 

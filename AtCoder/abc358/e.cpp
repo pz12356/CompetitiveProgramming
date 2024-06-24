@@ -173,6 +173,7 @@ int main() {
   for (int i = 1; i <= n; i++) {
     ans += dp[26][i];
   }
+  
   std::cout << ans << "\n";
   return 0;
 }

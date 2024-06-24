@@ -13,7 +13,8 @@ int main() {
   std::cin >> n >> m;
 
   std::vector<std::string> s(n);
-  for (int i = 0; i < n; i++) std::cin >> s[i];
+  for (int i = 0; i < n; i++)
+    std::cin >> s[i];
 
   int ans = n;
 
@@ -28,7 +29,7 @@ int main() {
         }
       }
     }
-    if(st.size() == m) {
+    if (st.size() == m) {
       ans = std::min<int>(ans, __builtin_popcount(mask));
     }
   }

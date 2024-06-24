@@ -8,7 +8,6 @@ int main() {
 
   std::string s, t;
   std::cin >> s >> t;
-
   std::cout << (s == "AtCoder" && t == "Land" ? "Yes\n" : "No\n");
   return 0;
 }
