@@ -15,3 +15,8 @@ g++ $fileName -std=c++20 -O2 -o $fileNameWithoutExt.out && $dir$fileNameWithoutE
 ```sh
 pypy3 -u $fileName
 ```
+
+- Generator/duipai.sh
+```
+sh duipai.sh
+```
