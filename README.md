@@ -1,6 +1,6 @@
 # CompetitiveProgramming
 
-WSL Ubuntu 24.04 LTS
+WSL Ubuntu 24.04 LTS  +  VSCode
 
 - CPP
 ```sh
