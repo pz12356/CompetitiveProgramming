@@ -60,7 +60,7 @@ int main() {
       c[i][j] = a[i][j] * b[i][j] % (p - 1);
     }
   }
-  
+
   std::vector dp(n, std::vector(m, std::vector<i64>(p, -1)));
 
   dp[0][0][c[0][0]] = 0;
@@ -71,9 +71,11 @@ int main() {
   while (!q.empty()) {
     auto [x, y, z] = q.front();
     q.pop();
-    for (auto [dx, dy] : std::vector<std::pair<int, int>>{{-1, 0}, {0, 1}, {1, 0}, {0, -1}}) {
+    for (auto [dx, dy] :
+         std::vector<std::pair<int, int>>{{-1, 0}, {0, 1}, {1, 0}, {0, -1}}) {
       int nx = x + dx, ny = y + dy;
-      if (nx < 0 || ny < 0 || nx >= n || ny >= m) continue;
+      if (nx < 0 || ny < 0 || nx >= n || ny >= m)
+        continue;
       int mod = (z + c[nx][ny]) % (p - 1);
       if (dp[nx][ny][mod] == -1) {
         dp[nx][ny][mod] = dp[x][y][z] + 1;
