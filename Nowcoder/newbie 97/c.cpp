@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <cmath>
 #include <iostream>
 #include <numeric>
 #include <vector>
@@ -100,15 +101,7 @@ int main() {
 
   int n, x;
   std::cin >> n >> x;
-
-  std::vector<int> square;
-
-  for (int i = 1; i * i <= x; i++) {
-    square.push_back(i * i);
-  }
-
-  int m = square.size();
-
+  int m = std::sqrt(x);
   std::vector dp(n + 1, std::vector<Z>(m + 1));
 
   dp[0][0] = 1;
