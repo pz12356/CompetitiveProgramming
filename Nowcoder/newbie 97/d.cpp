@@ -32,8 +32,6 @@ int power(int x, int n, int mod) {
   return res;
 }
 
-const i64 inf = 1e18;
-
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
@@ -61,7 +59,7 @@ int main() {
     }
   }
 
-  std::vector dp(n, std::vector(m, std::vector<i64>(p, -1)));
+  std::vector dp(n, std::vector(m, std::vector<int>(p, -1)));
 
   dp[0][0][c[0][0]] = 0;
 
