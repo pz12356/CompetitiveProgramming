@@ -24,7 +24,7 @@ int main() {
   int ans = 0;
   for (auto& v : mp) {
     std::ranges::sort(v);
-    for (int i = 0; i < (int)v.size() - 1; i++) {
+    for (int i = 0; i + 1 < v.size(); i++) {
       ans += v[i];
     }
   }
