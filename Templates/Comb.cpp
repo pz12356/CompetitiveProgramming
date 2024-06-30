@@ -2,8 +2,9 @@
 #include <vector>
 #include <assert.h>
 
+using i64 = long long;
 template<class T>
-constexpr T power(T a, int b) {
+constexpr T power(T a, i64 b) {
     T res = 1;
     for (; b; b /= 2, a *= a) {
         if (b % 2) {
@@ -17,14 +18,25 @@ template<int P>
 struct MInt {
     int x;
     constexpr MInt() : x{} {}
-    constexpr MInt(int x) : x{Norm(x % P)} {}
+    constexpr MInt(i64 x) : x{norm(x % getMod())} {}
     
-    constexpr int Norm(int x) const {
-        if (x < 0) {
-            x += P;
+    static int Mod;
+    constexpr static int getMod() {
+        if (P > 0) {
+            return P;
+        } else {
+            return Mod;
         }
-        if (x >= P) {
-            x -= P;
+    }
+    constexpr static void setMod(int Mod_) {
+        Mod = Mod_;
+    }
+    constexpr int norm(int x) const {
+        if (x < 0) {
+            x += getMod();
+        }
+        if (x >= getMod()) {
+            x -= getMod();
         }
         return x;
     }
@@ -36,26 +48,26 @@ struct MInt {
     }
     constexpr MInt operator-() const {
         MInt res;
-        res.x = Norm(P - x);
+        res.x = norm(getMod() - x);
         return res;
     }
     constexpr MInt inv() const {
         assert(x != 0);
-        return power(*this, P - 2);
+        return power(*this, getMod() - 2);
     }
-    constexpr MInt &operator*=(MInt rhs) {
-        x = 1LL * x * rhs.x % P;
+    constexpr MInt &operator*=(MInt rhs) & {
+        x = 1LL * x * rhs.x % getMod();
         return *this;
     }
-    constexpr MInt &operator+=(MInt rhs) {
-        x = Norm(x + rhs.x);
+    constexpr MInt &operator+=(MInt rhs) & {
+        x = norm(x + rhs.x);
         return *this;
     }
-    constexpr MInt &operator-=(MInt rhs) {
-        x = Norm(x - rhs.x);
+    constexpr MInt &operator-=(MInt rhs) & {
+        x = norm(x - rhs.x);
         return *this;
     }
-    constexpr MInt &operator/=(MInt rhs) {
+    constexpr MInt &operator/=(MInt rhs) & {
         return *this *= rhs.inv();
     }
     friend constexpr MInt operator*(MInt lhs, MInt rhs) {
@@ -79,7 +91,7 @@ struct MInt {
         return res;
     }
     friend constexpr std::istream &operator>>(std::istream &is, MInt &a) {
-        int v;
+        i64 v;
         is >> v;
         a = MInt(v);
         return is;
@@ -94,10 +106,13 @@ struct MInt {
         return lhs.val() != rhs.val();
     }
 };
- 
+
+template<>
+int MInt<0>::Mod = 1;
+
 template<int V, int P>
 constexpr MInt<P> CInv = MInt<P>(V).inv();
- 
+
 constexpr int P = 998244353;
 using Z = MInt<P>;
 
