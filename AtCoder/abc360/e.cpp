@@ -113,7 +113,7 @@ template <> i64 MInt<0>::Mod = 998244353;
 constexpr int P = 998244353;
 using Z = MInt<P>;
 
-int32_t main() {
+int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
 
