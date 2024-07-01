@@ -12,7 +12,8 @@ int main() {
 
     int res = 0;
     for (int i = l; i <= r; i++) {
-        res ^= i;
+        
+      res ^= i;
     }
     std::cout << res << "\n";
   }
