@@ -2,6 +2,7 @@
 #include <vector>
 #include <assert.h>
 
+// from jiangly
 using i64 = long long;
 template<class T>
 constexpr T power(T a, i64 b) {
