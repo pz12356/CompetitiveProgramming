@@ -1,5 +1,6 @@
 #include <vector>
 
+// from jiangly
 struct EBCC {
   int n;
   std::vector<std::vector<int>> adj;
