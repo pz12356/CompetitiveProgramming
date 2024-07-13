@@ -79,11 +79,6 @@ void init(int n){
     }
 }
 
-//Chinese remainder theorem
-
-//Lucas
-
-
 //BSGS
 int BSGS(int a, int b, int m) {
     std::map <int, int> hs;
