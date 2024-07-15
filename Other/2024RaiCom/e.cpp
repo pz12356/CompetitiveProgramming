@@ -21,7 +21,6 @@ void solve() {
     std::vector<i64> f(dp);
     int x = q[i];
     for (int k = t[x]; k <= d[x]; k++) {
-      f[k] = std::max(dp[k], dp[k]);
       f[k] = std::max(dp[k], dp[k - t[x]] + p[x]);
     }
     dp.swap(f);
