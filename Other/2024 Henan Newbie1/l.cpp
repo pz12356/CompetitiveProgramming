@@ -131,11 +131,11 @@ int main() {
 
   int len = a.size();
 
-  std::vector<int> dp(n + 1);
+  std::vector<int> dp(n / 2 + 1);
 
   for (int i = 0; i < len; i++) {
     std::vector<int> ndp(dp);
-    for (int j = 1; j <= n; j++) {
+    for (int j = 1; j <= n / 2; j++) {
       if (j >= a[i]) {
         ndp[j] = std::max(ndp[j], dp[j - a[i]] + a[i]);
       }
