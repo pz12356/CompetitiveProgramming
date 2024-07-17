@@ -54,7 +54,11 @@ struct EBCC {
   }
 
   std::vector<int> work() {
-    dfs(0, -1);
+    for (int i = 0; i < n; i++) {
+      if (dfn[i] == -1) {
+        dfs(i, -1);
+      }
+    }
     return bel;
   }
 
