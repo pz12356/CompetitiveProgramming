@@ -31,7 +31,6 @@ int main() {
       int p2 =
           std::lower_bound(a.begin(), a.end(), b - mid) - a.begin();
       if (p1 - p2 + 1 >= k) {
-        res = std::max(std::abs(a[p1] - b), std::abs(a[p2] - b));
         res = mid;
         r = mid - 1;
       } else {
