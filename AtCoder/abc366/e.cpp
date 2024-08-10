@@ -27,11 +27,11 @@ int main() {
   }
 
   auto get = [&](int x, std::vector<i64> &pre, std::vector<int> &a) {
-    int pos1 = std::upper_bound(a.begin(), a.end(), x) - a.begin();
-    if (pos1 == n) {
+    int pos = std::upper_bound(a.begin(), a.end(), x) - a.begin();
+    if (pos == n) {
       return 1LL * n * x - pre.back();
     }
-    return 1LL * pos1 * x - pre[pos1] - 1LL * (n - pos1) * x + pre.back() - pre[pos1]; 
+    return 1LL * pos* x - pre[pos] - 1LL * (n - pos) * x + pre.back() - pre[pos]; 
   };
 
   std::vector<i64> m;
@@ -43,11 +43,11 @@ int main() {
 
   i64 ans = 0;
   for (int i = x[0] - d; i <= x[n - 1] + d; i++) {
-    i64 sum1 = get(i, prex, x);
-    if (sum1 > d) {
+    i64 sum = get(i, prex, x);
+    if (sum > d) {
       continue;
     }
-    ans += std::upper_bound(m.begin(), m.end(), d - sum1) - m.begin();
+    ans += std::upper_bound(m.begin(), m.end(), d - sum) - m.begin();
   }
   std::cout << ans << "\n";
   return 0;
