@@ -1,0 +1,9 @@
+{
+  "code-runner.executorMap": {
+    "c": "cd $dir && gcc $fileName -O2 -o $fileNameWithoutExt.out && $dir$fileNameWithoutExt.out < ~/CompetitiveProgramming/in > ~/CompetitiveProgramming/out",
+    "cpp": "cd $dir && g++ $fileName -std=c++20 -O2 -o $fileNameWithoutExt.out && /usr/bin/time -f \"time: %Us\" $dir$fileNameWithoutExt.out < ~/CompetitiveProgramming/in > ~/CompetitiveProgramming/out",
+    "python": "cd $dir && /usr/bin/time -f \"time: %Us\" pypy3 -u $fileName < ~/CompetitiveProgramming/in > ~/CompetitiveProgramming/out",
+    "java": "cd $dir && javac $fileName && /usr/bin/time -f \"time: %Us\" java $fileNameWithoutExt < ~/CompetitiveProgramming/in > ~/CompetitiveProgramming/out"
+  },
+  "files.autoSave": "afterDelay"
+}
