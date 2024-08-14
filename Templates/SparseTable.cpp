@@ -10,7 +10,7 @@ template <class T, class F> struct SparseTable {
     a.assign(lg + 1, std::vector<T>(n));
     a[0] = init;
     for (int i = 1; i <= lg; i++) {
-      for (int j = 0; j <= n - (1 << i); j++) {
+      for (int j = 1; j <= n - (1 << i); j++) {
         a[i][j] = f(a[i - 1][j], a[i - 1][(1 << (i - 1)) + j]);
       }
     }
