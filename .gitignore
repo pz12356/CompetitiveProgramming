@@ -3,3 +3,4 @@
 in
 out
 *.class
+*__tests
