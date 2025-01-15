@@ -22,7 +22,6 @@ int main() {
   }
 
   auto erase = [&](i64 x1, i64 y1, i64 x2, i64 y2) {
-    bool isRev = false;
     if (x1 == x2) {
       if (y1 > y2) {
         std::swap(y1, y2);
