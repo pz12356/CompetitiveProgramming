@@ -64,21 +64,34 @@ int euler_phi(int n){
 }
 
 
-std::vector<int> primes;
-std::vector<bool> vis;
-void init(int n){
-    vis.resize(n + 1, false);
-    for(int i = 2; i <= n; i++){
-        if(vis[i] == false) primes.push_back(i);
-        for(int j = 0; j < (int)primes.size() && i * primes[j] <= n; j++) {
-            vis[i * primes[j]] = 1;
-            if (i % primes[j] == 0) {
+std::vector<int> minp, primes;
+std::vector<int> pi;
+
+bool isprime(int n) {
+    return minp[n] == n;
+}
+
+void sieve(int n) {
+    minp.assign(n + 1, 0);
+    primes.clear();
+    
+    for (int i = 2; i <= n; i++) {
+        if (minp[i] == 0) {
+            minp[i] = i;
+            primes.push_back(i);
+        }
+        
+        for (auto p : primes) {
+            if (i * p > n) {
+                break;
+            }
+            minp[i * p] = p;
+            if (p == minp[i]) {
                 break;
             }
         }
     }
 }
-
 //BSGS
 int BSGS(int a, int b, int m) {
     std::map <int, int> hs;
