@@ -8,24 +8,24 @@ struct Info {
 };
 
 struct Tag {
-	std::array<int, 32> _xor{};
+  std::array<int, 32> _xor{};
 };
 
 Info operator+(const Info &a, const Info &b) {
-	std::array<int, 32> s{};
-	for (int i = 0; i < 32; i++) {
-		s[i] = a.sum[i] + b.sum[i];
-	}
-	return {a.len + b.len, s};
+  std::array<int, 32> s{};
+  for (int i = 0; i < 32; i++) {
+    s[i] = a.sum[i] + b.sum[i];
+  }
+  return {a.len + b.len, s};
 }
 
 void apply(Info &x, Tag &a, Tag f) {
-	for (int i = 0; i < 32; i++) {
-		a._xor[i] ^= f._xor[i];
-		if (f._xor[i]) {
-			x.sum[i] = x.len - x.sum[i];
-		}
-	}
+  for (int i = 0; i < 32; i++) {
+    a._xor[i] ^= f._xor[i];
+    if (f._xor[i]) {
+      x.sum[i] = x.len - x.sum[i];
+    }
+  }
 }
 
 template <class Info, class Tag> struct LazySegmentTree {
@@ -148,48 +148,48 @@ template <class Info, class Tag> struct LazySegmentTree {
 };
 
 int main() {
-	std::ios::sync_with_stdio(false);
-	std::cin.tie(nullptr);
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(nullptr);
 
-	int n;
-	std::cin >> n;
+  int n;
+  std::cin >> n;
 
-	std::vector<Info> info(n + 1);
-	for (int i = 1; i <= n; i++) {
-		int x;
-		std::cin >> x;
-		for (int j = 0; j < 32; j++) {
-			info[i].sum[j] = x >> j & 1;
-		}
-	}
+  std::vector<Info> info(n + 1);
+  for (int i = 1; i <= n; i++) {
+    int x;
+    std::cin >> x;
+    for (int j = 0; j < 32; j++) {
+      info[i].sum[j] = x >> j & 1;
+    }
+  }
 
-	auto get = [&](std::array<int, 32> t) -> i64 {
-		i64 ans = 0;
-		for (int i = 0; i < 32; i++) {
-			ans += (1LL << i) * t[i];
-		}
-		return ans;
-	};
+  auto get = [&](std::array<int, 32> t) -> i64 {
+    i64 ans = 0;
+    for (int i = 0; i < 32; i++) {
+      ans += (1LL << i) * t[i];
+    }
+    return ans;
+  };
 
-	LazySegmentTree<Info, Tag> seg(info);
+  LazySegmentTree<Info, Tag> seg(info);
 
-	int q;
-	std::cin >> q;
-	while (q--) {
-		int op, l, r;
-		std::cin >> op >> l >> r;
-		if (op == 1) {
-			auto res = seg.query(l, r).sum;
-			std::cout << get(res) << "\n";
-		} else {
-			int x;
-			std::cin >> x;
-			std::array<int, 32> _xor{};
-			for (int i = 0; i < 32; i++) {
-				_xor[i] = x >> i & 1;
-			}
-			seg.modify(l, r, Tag{_xor});
-		}
-	}
+  int q;
+  std::cin >> q;
+  while (q--) {
+    int op, l, r;
+    std::cin >> op >> l >> r;
+    if (op == 1) {
+      auto res = seg.query(l, r).sum;
+      std::cout << get(res) << "\n";
+    } else {
+      int x;
+      std::cin >> x;
+      std::array<int, 32> _xor{};
+      for (int i = 0; i < 32; i++) {
+        _xor[i] = x >> i & 1;
+      }
+      seg.modify(l, r, Tag{_xor});
+    }
+  }
   return 0;
 }
