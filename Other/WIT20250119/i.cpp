@@ -8,7 +8,7 @@ struct Info {
 };
 
 struct Tag {
-  std::array<int, 32> _xor{};
+  std::bitset<32> _xor{};
 };
 
 Info operator+(const Info &a, const Info &b) {
@@ -20,8 +20,8 @@ Info operator+(const Info &a, const Info &b) {
 }
 
 void apply(Info &x, Tag &a, Tag f) {
+  a._xor ^= f._xor;
   for (int i = 0; i < 32; i++) {
-    a._xor[i] ^= f._xor[i];
     if (f._xor[i]) {
       x.sum[i] = x.len - x.sum[i];
     }
@@ -184,11 +184,7 @@ int main() {
     } else {
       int x;
       std::cin >> x;
-      std::array<int, 32> _xor{};
-      for (int i = 0; i < 32; i++) {
-        _xor[i] = x >> i & 1;
-      }
-      seg.modify(l, r, Tag{_xor});
+      seg.modify(l, r, Tag{std::bitset<32>(x)});
     }
   }
   return 0;
