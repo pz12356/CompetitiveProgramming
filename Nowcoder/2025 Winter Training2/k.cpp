@@ -50,9 +50,6 @@ int main() {
         vis[i][j] = true;
         st[cnt] = {};
         dfs(dfs, i, j, cnt);
-        // for (auto [x, y] : st[cnt]) {
-        //   std::cerr << x << " " << y << "\n";
-        // }
         ans = std::min<int>(ans, st[cnt].size());
         cnt++;
       }
