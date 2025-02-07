@@ -4,7 +4,7 @@
 struct Trie{
     bool suffix = false;
     int cnt = 0;
-    std::array<Trie*, 26> next{nullptr};
+    std::array<Trie*, 26> next{};
 };
 
 Trie* root = new Trie();
